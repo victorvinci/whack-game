@@ -31,3 +31,10 @@ function moleAppear() {
     if (!timeUp) moleAppear();
   }, time)
 }
+
+function startGame() {
+  scoreBoard.textContent = 0;
+  timeUp = false;
+  moleAppear();
+  setTimeout(() => timeUp = true, 10000);
+}

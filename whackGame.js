@@ -41,6 +41,8 @@ function startGame() {
   moleAppear();
   setTimeout(() => {
     timeUp = true
+    const clearBoard = document.querySelectorAll('.up');
+    clearBoard.forEach(clear => clear.classList.remove('up'));
     window.alert('Time Up!');
   }, 10000);
 }

@@ -23,14 +23,15 @@ function randomHole(holes) {
 }
 
 function moleAppear() {
-  const time = randomTime(200, 1000);
   const holeSelected = randomHole(holes);
+  const time = randomTime(200, 1500);
+  holeSelected.classList.remove('smack');
   holeSelected.classList.add('up');
-
+  
   setTimeout(() => {
     holeSelected.classList.remove('up');
     if (!timeUp) moleAppear();
-  }, time)
+  }, time);
 }
 
 function startGame() {
@@ -46,13 +47,18 @@ function startGame() {
 
 function hitMole(e) {
 
+  if (this.parentNode.classList.contains('smack')) return;
+
   if(!e.isTrusted) {
     console.log("Cheater!");
     return;
   }
 
   score++;
-  this.classList.remove('up');
+  this.parentNode.classList.remove('up');
+  this.parentNode.classList.add('smack');
+  setTimeout(() => this.parentNode.classList.remove('smack'), 800);
+  
   scoreBoard.textContent = score;
 }
 

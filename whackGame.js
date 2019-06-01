@@ -19,3 +19,14 @@ function randomHole(holes) {
 
   return hole;
 }
+
+function moleAppear() {
+  const time = randomTime(200, 1000);
+  const holeSelected = randomHole(holes);
+  holeSelected.classList.add('up');
+
+  setTimeout(() => {
+    holeSelected.classList.remove('up');
+    moleAppear();
+  }, time)
+}

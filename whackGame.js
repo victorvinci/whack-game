@@ -26,7 +26,7 @@ function moleAppear() {
   const holeSelected = randomHole(holes);
   const time = randomTime(200, 1500);
   holeSelected.classList.remove('smack');
-  holeSelected.classList.add('up');
+  holeSelected.firstElementChild.classList.add('up');
   
   setTimeout(() => {
     holeSelected.classList.remove('up');
@@ -55,7 +55,7 @@ function hitMole(e) {
   }
 
   score++;
-  this.parentNode.classList.remove('up');
+  this.classList.remove('up');
   this.parentNode.classList.add('smack');
   setTimeout(() => this.parentNode.classList.remove('smack'), 800);
   

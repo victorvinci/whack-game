@@ -64,7 +64,7 @@ h1 {
   transition:all 0.4s;
 }
 
-.hole.up .mole {
+.up {
   top: 0;
 }
 

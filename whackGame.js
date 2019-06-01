@@ -10,10 +10,12 @@ function randomTime(min, max) {
 function randomHole(holes) {
   const index = Math.floor(Math.random() * holes.length);
   const hole = holes[index];
-  
+
   if (hole === lastHole){
-    randomHole(holes);
-  }
+    return randomHole(holes);
+  } 
 
   lastHole = hole;
+
+  return hole;
 }

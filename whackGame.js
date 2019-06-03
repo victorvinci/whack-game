@@ -1,9 +1,19 @@
-const holes = document.querySelectorAll('.hole');
-const scoreBoard = document.querySelector('.score');
-const moles = document.querySelectorAll('.mole');
+let holes;
+let scoreBoard;
+let moles;
+
 let lastHole;
 let timeUp = false;
 let score = 0;
+
+window.setTimeout(() => {
+  holes = document.querySelectorAll('.hole');
+  scoreBoard = document.querySelector('.score');
+  moles = document.querySelectorAll('.mole');
+
+  moles.forEach(mole => mole.addEventListener('click', hitMole));
+}, 200)
+
 
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -29,7 +39,7 @@ function moleAppear() {
   holeSelected.firstElementChild.classList.add('up');
   
   setTimeout(() => {
-    holeSelected.classList.remove('up');
+    holeSelected.firstElementChild.classList.remove('up');
     if (!timeUp) moleAppear();
   }, time);
 }
@@ -43,7 +53,7 @@ function startGame() {
     timeUp = true
     const clearBoard = document.querySelectorAll('.up');
     clearBoard.forEach(clear => clear.classList.remove('up'));
-    window.alert('Time Up!');
+    window.alert("Time's Up!");
   }, 10000);
 }
 
@@ -64,4 +74,3 @@ function hitMole(e) {
   scoreBoard.textContent = score;
 }
 
-moles.forEach(mole => mole.addEventListener('click', hitMole));

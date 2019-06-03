@@ -2,6 +2,7 @@ let holes;
 let scoreBoard;
 let moles;
 
+let finishScore = 0;
 let lastHole;
 let timeUp = false;
 let score = 0;
@@ -12,7 +13,7 @@ window.setTimeout(() => {
   moles = document.querySelectorAll('.mole');
 
   moles.forEach(mole => mole.addEventListener('click', hitMole));
-}, 200)
+}, 200);
 
 
 function randomTime(min, max) {
@@ -20,8 +21,8 @@ function randomTime(min, max) {
 }
 
 function randomHole(holes) {
-  const index = Math.floor(Math.random() * holes.length);
-  const hole = holes[index];
+  let index = Math.floor(Math.random() * holes.length);
+  let hole = holes[index];
 
   if (hole === lastHole){
     return randomHole(holes);
@@ -33,8 +34,8 @@ function randomHole(holes) {
 }
 
 function moleAppear() {
-  const holeSelected = randomHole(holes);
-  const time = randomTime(200, 1500);
+  let holeSelected = randomHole(holes);
+  let time = randomTime(200, 1500);
   holeSelected.classList.remove('smack');
   holeSelected.firstElementChild.classList.add('up');
   
@@ -51,7 +52,7 @@ function startGame() {
   moleAppear();
   setTimeout(() => {
     timeUp = true
-    const clearBoard = document.querySelectorAll('.up');
+    let clearBoard = document.querySelectorAll('.up');
     clearBoard.forEach(clear => clear.classList.remove('up'));
     window.alert("Time's Up!");
   }, 10000);
@@ -74,3 +75,14 @@ function hitMole(e) {
   scoreBoard.textContent = score;
 }
 
+let moleFun = function moleAppear2() {
+  let holeSelected = randomHole(holes);
+  let time = randomTime(200, 1500);
+  holeSelected.classList.remove('smack');
+  holeSelected.firstElementChild.classList.add('up');
+  
+  setTimeout(() => {
+    holeSelected.firstElementChild.classList.remove('up');
+    if (!timeUp) moleAppear2();
+  }, time);
+}

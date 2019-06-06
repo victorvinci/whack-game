@@ -13,7 +13,7 @@ window.setTimeout(() => {
   moles = document.querySelectorAll('.mole');
 
   moles.forEach(mole => mole.addEventListener('click', hitMole));
-}, 200);
+}, 500);
 
 
 function randomTime(min, max) {
